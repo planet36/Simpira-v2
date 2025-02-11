@@ -1,6 +1,3 @@
-# compiler
-CC = gcc
-
 # compiler flags    
 CFLAGS  = -Wall -O3 -maes -ansi -pedantic
 
