@@ -19,25 +19,25 @@
 #define B 32
 
 __m128i F(__m128i x, int b, int c) {
-  __m128i C = _mm_setr_epi32(0x00^c^B, 0x10^c^B, 0x20^c^B, 0x30^c^B);
+  __m128i C = _mm_setr_epi32(0x00^c^b, 0x10^c^b, 0x20^c^b, 0x30^c^b);
   __m128i Z = _mm_setr_epi32(0, 0, 0, 0);
   return _mm_aesenc_si128(_mm_aesenc_si128(x,C), Z);
 }
 
 __m128i F_last(__m128i x, int b, int c) {
-  __m128i C = _mm_setr_epi32(0x00^c^B, 0x10^c^B, 0x20^c^B, 0x30^c^B);
+  __m128i C = _mm_setr_epi32(0x00^c^b, 0x10^c^b, 0x20^c^b, 0x30^c^b);
   __m128i Z = _mm_setr_epi32(0, 0, 0, 0);
   return _mm_aesenclast_si128(_mm_aesenc_si128(x,C), Z);
 }
 
 __m128i Fi(__m128i x, int b, int c) {
-  __m128i Ci = _mm_aesimc_si128(_mm_setr_epi32(0x00^c^B, 0x10^c^B, 0x20^c^B, 0x30^c^B));
+  __m128i Ci = _mm_aesimc_si128(_mm_setr_epi32(0x00^c^b, 0x10^c^b, 0x20^c^b, 0x30^c^b));
   __m128i Z = _mm_setr_epi32(0, 0, 0, 0);
   return _mm_aesdec_si128(_mm_aesdec_si128(x,Ci), Z);
 }
 
 __m128i Fi_last(__m128i x, int b, int c) {
-  __m128i Ci = _mm_aesimc_si128(_mm_setr_epi32(0x00^c^B, 0x10^c^B, 0x20^c^B, 0x30^c^B));
+  __m128i Ci = _mm_aesimc_si128(_mm_setr_epi32(0x00^c^b, 0x10^c^b, 0x20^c^b, 0x30^c^b));
   __m128i Z = _mm_setr_epi32(0, 0, 0, 0);
   return _mm_aesdeclast_si128(_mm_aesdec_si128(x,Ci), Z);
 }
