@@ -2,7 +2,7 @@
    Simpira v2 reference C implementation
 
    Written in 2016 by Shay Gueron and Nicky Mouha
-   
+
    This file implements only the 256-bit permutation, using AES intrinsics
 
    To the extent possible under law, the author has dedicated all copyright
@@ -43,7 +43,7 @@ void perm(__m128i x[B]) {
   R(x[0],x[1],13);
   R(x[1],x[0],14);
   R(x[0],x[1],15);
- 
+
 }
 
 void invperm(__m128i x[B]) {
@@ -63,14 +63,14 @@ void invperm(__m128i x[B]) {
   R(x[1],x[0], 4);
   R(x[0],x[1], 3);
   R(x[1],x[0], 2);
-  R(x[0],x[1], 1);  
+  R(x[0],x[1], 1);
 
 }
 
 void print(__m128i x[B]) {
   int i;
   uint32_t *v = (uint32_t*) &x[0];
-  
+
   for (i=0; i<B; i++) {
     printf("%08x %08x %08x %08x ", v[4*i], v[4*i+1], v[4*i+2], v[4*i+3]);
   }
@@ -90,7 +90,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
   print(x);
 
   invperm(x);
-  
+
   printf("x: ");
   print(x);
 

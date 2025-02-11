@@ -2,7 +2,7 @@
    Simpira v2 reference C implementation
 
    Written in 2016 by Shay Gueron and Nicky Mouha
-   
+
    This file implements only the 1024-bit permutation, using AES intrinsics
 
    To the extent possible under law, the author has dedicated all copyright
@@ -33,7 +33,7 @@
 
 void perm(__m128i b[B]) {
   /* Type-II Generalized Feistel, Suzaki-Minematsu shuffle (3,0,7,4,5,6,1,2) */
-  
+
   R(b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], 0);
   R(b[1], b[6], b[7], b[0], b[3], b[4], b[5], b[2], 1);
   R(b[6], b[5], b[2], b[1], b[0], b[3], b[4], b[7], 2);
@@ -81,7 +81,7 @@ void invperm(__m128i b[B]) {
 void print(__m128i x[B]) {
   int i;
   uint32_t *v = (uint32_t*) &x[0];
-  
+
   for (i=0; i<B; i++) {
     printf("%08x %08x %08x %08x ", v[4*i], v[4*i+1], v[4*i+2], v[4*i+3]);
   }
@@ -101,7 +101,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
   print(x);
 
   invperm(x);
-  
+
   printf("x: ");
   print(x);
 
