@@ -65,7 +65,7 @@ void print(__m128i x) {
   printf("%08x %08x %08x %08x \n", v[0], v[1], v[2], v[3]);
 }
 
-int main(int argc, char *argv[]) {
+int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
 
   __m128i x = {0};
 

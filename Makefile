@@ -1,4 +1,4 @@
-CFLAGS += -maes
+CFLAGS += -std=c23 -maes
 
 SRCS := $(wildcard *.c)
 BINS := $(basename $(SRCS))
