@@ -18,29 +18,29 @@
 
 #define B 32
 
-__m128i F(__m128i x, int b, int c) {
-  __m128i C = _mm_setr_epi32(0x00^c^b, 0x10^c^b, 0x20^c^b, 0x30^c^b);
-  __m128i Z = _mm_setr_epi32(0, 0, 0, 0);
+__m128i F(const __m128i x, const int b, const int c) {
+  const __m128i C = _mm_setr_epi32(0x00^c^b, 0x10^c^b, 0x20^c^b, 0x30^c^b);
+  const __m128i Z = _mm_setr_epi32(0, 0, 0, 0);
   return _mm_aesenc_si128(_mm_aesenc_si128(x,C), Z);
 }
 
-__m128i F_last(__m128i x, int b, int c) {
-  __m128i C = _mm_setr_epi32(0x00^c^b, 0x10^c^b, 0x20^c^b, 0x30^c^b);
-  __m128i Z = _mm_setr_epi32(0, 0, 0, 0);
+__m128i F_last(const __m128i x, const int b, const int c) {
+  const __m128i C = _mm_setr_epi32(0x00^c^b, 0x10^c^b, 0x20^c^b, 0x30^c^b);
+  const __m128i Z = _mm_setr_epi32(0, 0, 0, 0);
   return _mm_aesenclast_si128(_mm_aesenc_si128(x,C), Z);
 }
 
-__m128i Fi(__m128i x, int b, int c) {
-  __m128i C = _mm_setr_epi32(0x00^c^b, 0x10^c^b, 0x20^c^b, 0x30^c^b);
-  __m128i Ci = _mm_aesimc_si128(C);
-  __m128i Z = _mm_setr_epi32(0, 0, 0, 0);
+__m128i Fi(const __m128i x, const int b, const int c) {
+  const __m128i C = _mm_setr_epi32(0x00^c^b, 0x10^c^b, 0x20^c^b, 0x30^c^b);
+  const __m128i Ci = _mm_aesimc_si128(C);
+  const __m128i Z = _mm_setr_epi32(0, 0, 0, 0);
   return _mm_aesdec_si128(_mm_aesdec_si128(x,Ci), Z);
 }
 
-__m128i Fi_last(__m128i x, int b, int c) {
-  __m128i C = _mm_setr_epi32(0x00^c^b, 0x10^c^b, 0x20^c^b, 0x30^c^b);
-  __m128i Ci = _mm_aesimc_si128(C);
-  __m128i Z = _mm_setr_epi32(0, 0, 0, 0);
+__m128i Fi_last(const __m128i x, const int b, const int c) {
+  const __m128i C = _mm_setr_epi32(0x00^c^b, 0x10^c^b, 0x20^c^b, 0x30^c^b);
+  const __m128i Ci = _mm_aesimc_si128(C);
+  const __m128i Z = _mm_setr_epi32(0, 0, 0, 0);
   return _mm_aesdeclast_si128(_mm_aesdec_si128(x,Ci), Z);
 }
 
@@ -106,7 +106,7 @@ void smallperm(__m128i x[B]) {
 
 }
 
-void doubleF(__m128i x[B], int r, int k) {
+void doubleF(__m128i x[B], const int r, const int k) {
   if (r%2) {
     x[r  ] ^= F(x[r+1],B,2*k+1);
     x[r+1] ^= F(x[r  ],B,2*k+2);
@@ -232,9 +232,9 @@ void invbigperm(__m128i x[B]) {
   }
 }
 
-void print(__m128i x[B]) {
+void print(const __m128i x[B]) {
   int i;
-  uint32_t *v = (uint32_t*) &x[0];
+  const uint32_t *v = (const uint32_t*) &x[0];
 
   for (i=0; i<B; i++) {
     printf("%08x %08x %08x %08x ", v[4*i], v[4*i+1], v[4*i+2], v[4*i+3]);

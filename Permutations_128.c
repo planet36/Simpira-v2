@@ -59,8 +59,8 @@ void invperm(__m128i x[B]) {
 
 }
 
-void print(__m128i x) {
-  uint32_t *v = (uint32_t*) &x;
+void print(const __m128i x) {
+  const uint32_t *v = (const uint32_t*) &x;
 
   printf("%08x %08x %08x %08x \n", v[0], v[1], v[2], v[3]);
 }
