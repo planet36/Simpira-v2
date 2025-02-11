@@ -17,7 +17,7 @@
 #include <immintrin.h>
 
 #define B 6
-#define ROUNDS (3*5)
+//#define ROUNDS (3*5)
 
 #define C0(i) _mm_setr_epi32(0x00^(3*i+1)^B, 0x10^(3*i+1)^B, 0x20^(3*i+1)^B, 0x30^(3*i+1)^B)
 #define C1(i) _mm_setr_epi32(0x00^(3*i+2)^B, 0x10^(3*i+2)^B, 0x20^(3*i+2)^B, 0x30^(3*i+2)^B)
