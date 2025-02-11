@@ -23,7 +23,7 @@
 #define C(i)  _mm_setr_epi32(0x00^i^B, 0x10^i^B, 0x20^i^B, 0x30^i^B)
 #define Ci(i) _mm_aesimc_si128(_mm_setr_epi32(0x00^i^B, 0x10^i^B, 0x20^i^B, 0x30^i^B))
 
-void perm(__m128i x[1]) {
+void perm(__m128i x[B]) {
   /* AES permutation */
 
   x[0] = _mm_aesenc_si128(x[0],C(1));
@@ -41,7 +41,7 @@ void perm(__m128i x[1]) {
 
 }
 
-void invperm(__m128i x[1]) {
+void invperm(__m128i x[B]) {
   /* AES permutation */
 
   x[0] = _mm_aesdec_si128(x[0],Ci(6));
