@@ -45,7 +45,7 @@ __m128i Fi_last(const __m128i x, const int b, const int c) {
 }
 
 void perm1(__m128i x[B]) {
-  int R = 6;
+  constexpr int R = 6;
   int c;
 
   for (c=1; c<R; c++) {
@@ -56,11 +56,11 @@ void perm1(__m128i x[B]) {
 
 
 void perm6(__m128i x[B]) {
-  int R = 15;
+  const int R = 15;
   int c = 1;
   int r;
 
-  int s[6] = {0, 1, 2, 5, 4, 3};
+  const int s[6] = {0, 1, 2, 5, 4, 3};
 
   for (r=0; r<R; r++) {
     x[s[(r+1)%B]] ^= F(x[s[ r   %B]],B,c++);
@@ -70,12 +70,12 @@ void perm6(__m128i x[B]) {
 }
 
 void perm8(__m128i x[B]) {
-  int R = 18;
+  const int R = 18;
   int c = 1;
   int r;
 
-  int s[6] = {0, 1, 6, 5, 4, 3};
-  int t[2] = {2, 7};
+  const int s[6] = {0, 1, 6, 5, 4, 3};
+  const int t[2] = {2, 7};
 
   for (r=0; r<R; r++) {
     x[s[(r+1)%6]] ^= F(x[s[ r   %6]],B,c++);
@@ -119,7 +119,7 @@ void doubleF(__m128i x[B], const int r, const int k) {
 void bigperm(__m128i x[B]) {
   int j, r;
   int k = 0;
-  int D = (B/2)*2;
+  const int D = (B/2)*2;
 
   for (j=0; j<3; j++) {
     if (D != B) {
@@ -140,7 +140,7 @@ void bigperm(__m128i x[B]) {
 }
 
 void invperm1(__m128i x[B]) {
-  int R = 6;
+  const int R = 6;
   int c;
 
   for (c=R; c>1; c--) {
@@ -150,11 +150,11 @@ void invperm1(__m128i x[B]) {
 }
 
 void invperm6(__m128i x[B]) {
-  int R = 15;
+  constexpr int R = 15;
   int c = 45;
   int r;
 
-  int s[6] = {0, 1, 2, 5, 4, 3};
+  constexpr int s[6] = {0, 1, 2, 5, 4, 3};
 
   for (r=R-1; r>=0; r--) {
     x[s[(r+3)%B]] ^= F(x[s[(r+4)%B]],B,c--);
@@ -164,12 +164,12 @@ void invperm6(__m128i x[B]) {
 }
 
 void invperm8(__m128i x[B]) {
-  int R = 18;
+  constexpr int R = 18;
   int c = 72;
   int r;
 
-  int s[6] = {0, 1, 6, 5, 4, 3};
-  int t[2] = {2, 7};
+  constexpr int s[6] = {0, 1, 6, 5, 4, 3};
+  constexpr int t[2] = {2, 7};
 
   for (r=R-1; r>=0; r--) {
     x[t[(r+1)%2]] ^= F(x[s[(r+2)%6]],B,c--);
