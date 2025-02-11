@@ -6,8 +6,5 @@ TARGET = Permutations_Ref Permutations_128 Permutations_256 Permutations_384 Per
 
 all: $(TARGET)
 
-$(TARGET): *.c
-	$(CC) $(CFLAGS) -o $@ $@.c
-
 clean:
 	$(RM) $(TARGET)
