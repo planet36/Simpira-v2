@@ -1,8 +1,9 @@
 CFLAGS += -maes
 
-TARGET = Permutations_Ref Permutations_128 Permutations_256 Permutations_384 Permutations_512 Permutations_768 Permutations_1024
+SRCS := $(wildcard *.c)
+BINS := $(basename $(SRCS))
 
-all: $(TARGET)
+all: $(BINS)
 
 clean:
-	$(RM) $(TARGET)
+	$(RM) $(BINS)
